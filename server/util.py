@@ -1,6 +1,8 @@
 import pickle
 import json
 import numpy as np
+import warnings
+warnings.filterwarnings("ignore", category=UserWarning)
 
 __locations = None
 __data_columns = None
@@ -16,7 +18,7 @@ def get_estimated_price(location,sqft,bhk,bath):
     x[0] = sqft
     x[1] = bath
     x[2] = bhk
-    if loc_index>=0:
+    if loc_index >= 0:
         x[loc_index] = 1
 
     return round(__model.predict([x])[0],2)
@@ -39,7 +41,6 @@ def load_saved_artifacts():
 
 def get_location_names():
     return __locations
-
 def get_data_columns():
     return __data_columns
 
